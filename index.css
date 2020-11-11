@@ -1,64 +1,88 @@
 *{
     padding:0px;
     margin: 0px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-
-header{
-    position: relative;
-    padding: 80px;
-    background: url('https://i.blogs.es/6a5540/cod/1366_2000.jpg') no-repeat center;
-    margin-bottom: 1%;
+html{
+    height: 100%;
 }
+/* header{
+    grid-area: header;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding-left: 2%;
+} */
 
-table, th, td{
-    border: 1px solid black;
+#banner{
+    grid-area: banner;
+    width: 100%;
+    /* height: 500px; */
+    background: url('https://i.pinimg.com/originals/a2/49/06/a249063044d0e8ff4e9454f201d32118.jpg') no-repeat center;
+    background-size: cover;
+
+}
+table{
+    width: 95%;
+    margin: auto;
+    margin-bottom: 2%;
+    border: solid black 1px;
+}
+th, td{
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+
     padding: 1%;
 }
 a{
     text-decoration: none;
 }
-#header_text{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: black;
-    font-size: 30px;
-}
-#contenedor{
-    background-color: rgba(255, 255, 255, 0.842);
-    width: 900px;
-    height: 100%;
+
+img{
+    display: block;
+    width: 100%;
     margin: auto;
 }
-#footer{
+
+footer{
+    grid-area: footer;
     background-color: black;
     color: white;
-    padding: 40px;
-    clear: both;
+    padding-left: 2%;
+    /* padding: 40px;
+    clear: both; */
 }
 #main{
-    margin: 1%;
-    background-color: white;
-    float: left;
+    grid-area: main;
+    /* float: left;
     width: 430px;
-    height: 100%;
+    height: 100%; */
+    border-right: solid rgb(194, 194, 194) 1px;
+    
 }
 
 #aside{
-    margin: 1%;
-    background-color: white;
-    float: right;
-    width: 430px;
-    height: 1290px;
+    grid-area: aside;
+}
+
+#nav{
+    grid-area: nav;
+    width:100%;
+    display:grid;
+    justify-content: center;
+    background-color: #000;
+    margin-bottom: 3%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
 }
 
 #escribenos{
-    float: right;
-    margin: auto;
+    grid-area: escribenos;
+    /* float: right; */
+    /* margin: auto; */
     width: 100%;
     text-align: center;
     margin-bottom: 5%;
@@ -70,9 +94,10 @@ a{
     font-size: 30px;
 } 
 .p{
+    font-size: 18px;
     text-align: justify;
     line-height: 1.5;
-    margin-top: 3%; 
+    margin: 3%; 
 }
 
 
@@ -80,18 +105,71 @@ table{
     margin-top: 3%;
 }
 img{
-    width: 90%;
+    width: 100%;
     margin: 1%;
+    justify-content: center;
     text-align: center;
 }
 
-/* menus, submenus */
+body{
+    min-height: 100%;
+}
+
+
+/* responsive css grid  ==============================*/
+
+.grid-container{
+    display: grid;
+    gap: 10px;
+    grid-template: 
+    /* "header" 60px */
+    "banner" 500px
+    "nav" auto
+    "main" auto
+    "aside" auto
+    "escribenos" auto
+    "footer" 60px; 
+}
+
+/* pc ============================= */
+@media (min-width: 900px){
+    img{
+    display: block;
+    width: 95%;
+    margin: auto;
+    }
+
+    form{
+        width: 80%;
+        margin-top: 5%;
+
+    }
+    #aside{
+        position: sticky;
+        top: 5%;
+        height: calc(100% - 400px); /* Negate the fixed width element value from 100% */
+
+    }
+    .grid-container{
+        justify-content: center;
+        grid-template: 
+        /* "header header header header" 60px */
+        "banner banner banner banner" 500px
+        "nav nav  nav nav" auto
+        ". main aside ." auto
+        ". escribenos . ." auto
+        "footer footer footer footer" 60px /
+        15% 50%  20% 15%; 
+    }
+}
+
+
+
+/* menus, submenus ===========================*/
 ul{
     list-style: none;
 }
-.nav{
-    width: 100%;
-}
+
 
 .nav > li{
     float: left;
@@ -109,25 +187,28 @@ ul{
     background-color: #434343;
 }
 
+/* SubMenu */
 .nav li ul{
     display:none;
-    position: absolute;
-    min-width: 140px;
+    position: center;
+    max-width: 140px;
 }
 
 .nav li:hover > ul{
     display: block;
+    max-width: 140px;    
 }
 
-/* Formulario */
+/* Formulario ======================================*/
 *{box-sizing:border-box;}
 
 form{
-	width:90%;
+    margin-top: 5%;
 	padding:16px;
 	border-radius:10px;
 	margin:auto;
-	background-color:#466060;
+    background-color:#cacaca;
+    /* border: solid #466060; */
 }
 
 form label{
